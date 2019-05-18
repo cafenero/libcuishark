@@ -4,8 +4,10 @@ CFLAGS += \
 	-I/usr/include \
 	-I/usr/local/include \
 	-I/usr/local/include/wireshark \
+        -I/usr/lib64/glib-2.0/include \
 	-I/usr/lib/x86_64-linux-gnu/glib-2.0/include \
-	-I/usr/include/glib-2.0
+	-I/usr/include/glib-2.0 \
+	-Ilib
 CXXFLAGS += $(CFLAGS) -std=c++11
 LDFLAGS +=  \
 	-L/usr/local/lib \
@@ -17,10 +19,16 @@ LDFLAGS +=  \
 
 test: compile
 	./a.out
+#test: g++ $(CFLAGS) -std=c++11 -L.. -I..  main.cc -lcuishark $(LDFLAGS) -lgtest -lgtest_main -lpthread
+#	./a.out
 
+
+# compile:
+# 	g++ $(CFLAGS) -std=c++11 -L.. -I..  main.cc \
+# 		-lcuishark $(LDFLAGS) -lgtest -lgtest_main -lpthread
 compile:
-	g++ $(CFLAGS) -std=c++11 -L.. -I..  main.cc \
-		-lcuishark $(LDFLAGS) -lgtest -lgtest_main -lpthread
+	g++ $(CFLAGS) -std=c++11 -L.. -I..  main.cc -lcuishark $(LDFLAGS) -lgtest -lgtest_main -lpthread
+
 
 clean:
 	rm -f $(OBJ) a.out *.a

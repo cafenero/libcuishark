@@ -1,9 +1,10 @@
 
 all: test example
-.PHONY: lib test install uninstall run
+.PHONY: lib install uninstall run
+#.PHONY: lib test install uninstall run
 
-test: lib
-	make -C test all
+# test: lib
+# 	make -C test
 
 lib:
 	make -C lib

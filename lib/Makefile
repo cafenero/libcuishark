@@ -8,11 +8,12 @@
 # LDFLAGS += -lwiretap -lwsutil -lz -lm -lpcap
 
 CFLAGS += \
-	-I. -g -O0 -pthread \
+	-I. -std=gnu99 -g -O0 -pthread \
 	-I/usr/include \
 	-I/usr/include/wireshark \
 	-I/usr/local/include \
 	-I/usr/local/include/wireshark \
+	-I/usr/lib64/glib-2.0/include \
 	-I/usr/lib/x86_64-linux-gnu/glib-2.0/include \
 	-I/usr/include/glib-2.0
 CXXFLAGS += $(CFLAGS) -std=c++11

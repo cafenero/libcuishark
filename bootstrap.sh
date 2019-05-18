@@ -2,10 +2,18 @@
 
 CORES=` lscpu | grep "^CPU(s):" | awk '{print $2}' `
 
-sudo apt install \
-  autoconf build-essential libtool    \
-  libtool libtool-bin libgcrypt-dev   \
-  bison flex libpcap-dev libglib2.0-dev
+if [ -f /etc/redhat-release ]; then
+    cat /etc/redhat-release
+    sudo yum install \
+        libtool bison flex libgcrypt-devel \
+        glib2-devel libpcap-devel zlib-devel \
+	gcc-c++
+else
+    sudo apt install \
+        autoconf build-essential libtool    \
+        libtool libtool-bin libgcrypt-dev   \
+        bison flex libpcap-dev libglib2.0-dev
+fi
 
 git clone http://github.com/cuishark/wireshark
 cd wireshark
